@@ -1,0 +1,16 @@
+[Unit]
+Description=tedge-agent is a thin-edge.io component to support operations.
+After=syslog.target network.target mosquitto.service
+
+[Service]
+User=tedge
+Environment=PATH=$PATH:/media/apps/com.thin-edge.app/bin
+RuntimeDirectory=tedge-agent
+ExecStartPre=+-/media/apps/com.thin-edge.app/bin/tedge init --config-dir "/media/apps/com.thin-edge.app"
+ExecStart=/media/apps/com.thin-edge.app/bin/tedge-agent --config-dir "/media/apps/com.thin-edge.app"
+Restart=on-failure
+RestartPreventExitStatus=255
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

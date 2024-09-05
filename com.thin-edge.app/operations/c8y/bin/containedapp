@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+sleep 10
+systemctl start tedge-agent
+systemctl start tedge-mapper-c8y
+systemctl start mosquitto
