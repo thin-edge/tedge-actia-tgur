@@ -4,7 +4,7 @@ After=syslog.target network.target mosquitto.service
 
 [Service]
 User=tedge
-Environment=PATH=$PATH:/media/apps/com.thin-edge.app/bin
+Environment=PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/media/apps/com.thin-edge.app/bin
 RuntimeDirectory=tedge-agent
 ExecStartPre=+-/media/apps/com.thin-edge.app/bin/tedge init --config-dir "/media/apps/com.thin-edge.app"
 ExecStart=/media/apps/com.thin-edge.app/bin/tedge-agent --config-dir "/media/apps/com.thin-edge.app"
