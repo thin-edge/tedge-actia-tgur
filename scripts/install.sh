@@ -67,21 +67,8 @@ if [ "$TEDGE_USER" != "root" ]; then
     useradd --system --no-create-home --shell /sbin/nologin --gid "$TEDGE_GROUP" "$TEDGE_USER" ||:
 fi
 
-# It will fail the first time
-# FIXME: Calling tedge config seems to still create the /etc/tedge folder
-# Workaround is to create the tedge.toml manually
-# tedge config set logs.path "$TEDGE_CONFIG_DIR/log"
-# tedge config set data.path "$TEDGE_CONFIG_DIR/data"
-
-if [ ! -f  "$TEDGE_CONFIG_DIR/tedge.toml" ]; then
-    cat << EOT > "$TEDGE_CONFIG_DIR/tedge.toml"
-[logs]
-path = "$TEDGE_CONFIG_DIR/log"
-
-[data]
-path = "$TEDGE_CONFIG_DIR/data"
-EOT
-fi
+tedge config set logs.path "$TEDGE_CONFIG_DIR/log"
+tedge config set data.path "$TEDGE_CONFIG_DIR/data"
 
 tedge init --user "$TEDGE_USER" --group "$TEDGE_GROUP"
 c8y-remote-access-plugin --init
