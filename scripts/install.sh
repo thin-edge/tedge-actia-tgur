@@ -140,6 +140,7 @@ fi
 if [ ! -f "$BIN_DIR/containedapp" ]; then
     cat << EOT > "$BIN_DIR/containedapp"
 #!/bin/sh
+echo "Waiting 10s for system to boot up before starting thin-edge.io services" >&2
 sleep 10
 systemctl start tedge-agent
 systemctl start tedge-mapper-c8y
