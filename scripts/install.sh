@@ -9,7 +9,7 @@ C8Y_URL=
 
 # Installation settings
 CHANNEL=main
-VERSION="1.2.1-rc125+g684a40b"
+VERSION="1.2.1-rc192+g1fcd3b3"
 
 IDENTITY_PREFIX=${IDENTITY_PREFIX:-actia_}
 IDENTITY_SCRIPT=/media/maps/regatta/bin/sn.sh
