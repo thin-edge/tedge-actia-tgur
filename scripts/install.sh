@@ -94,7 +94,7 @@ fi
 # Mosquitto settings
 #
 if ! grep -q "^include_dir $TEDGE_CONFIG_DIR/mosquitto-conf" /etc/mosquitto/mosquitto.conf; then
-    echo "include_dir $TEDGE_CONFIG_DIR" >> /etc/mosquitto/mosquitto.conf
+    echo "include_dir $TEDGE_CONFIG_DIR/mosquitto-conf" >> /etc/mosquitto/mosquitto.conf
 fi
 
 # Add persistence settings
