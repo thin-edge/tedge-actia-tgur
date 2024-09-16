@@ -9,7 +9,7 @@ This device uses a custom OS (built with Yocto) and it does not have any convent
 Use the following one-liner to install thin-edge.io on the device:
 
 ```sh
-wget -O https://raw.githubusercontent.com/thin-edge/tedge-actia-tgur/main/scripts/install.sh | sh -s
+wget -O - https://raw.githubusercontent.com/thin-edge/tedge-actia-tgur/main/scripts/install.sh | sh -s
 ```
 
 Once the script has finished, you should restart the device to confirm that thin-edge.io is launched automatically on device startup.
