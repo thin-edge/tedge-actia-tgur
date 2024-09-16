@@ -12,8 +12,8 @@ if [ $# -gt 0 ]; then
 fi
 
 # Installation settings
-CHANNEL=main
-VERSION="1.2.1-rc192+g1fcd3b3"
+CHANNEL=release
+VERSION="1.3.0"
 
 IDENTITY_PREFIX=${IDENTITY_PREFIX:-actia_}
 IDENTITY_SCRIPT=/media/maps/regatta/bin/sn.sh
