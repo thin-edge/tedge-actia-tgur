@@ -110,6 +110,23 @@ EOT
 fi
 
 #
+# Service definitions
+#
+mkdir -p /etc/systemd/system/
+if [ ! -f /etc/systemd/system/tedge-agent.service ]; then
+    echo "Downloading service definition: tedge-agent.service" >&2
+    wget -O - https://raw.githubusercontent.com/thin-edge/tedge-actia-tgur/main/etc/systemd/system/tedge-agent.service > /etc/systemd/system/tedge-agent.service
+fi
+
+if [ ! -f /etc/systemd/system/tedge-mapper-c8y.service ]; then
+    echo "Downloading service definition: tedge-mapper-c8y.service" >&2
+    wget -O - https://raw.githubusercontent.com/thin-edge/tedge-actia-tgur/main/etc/systemd/system/tedge-mapper-c8y.service > /etc/systemd/system/tedge-mapper-c8y.service
+fi
+
+# reload service definitions
+systemctl daemon-reload
+
+#
 # Cumulocity IoT
 #
 if ! tedge config get c8y.url >/dev/null 2>&1; then
