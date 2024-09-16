@@ -4,6 +4,22 @@ This repository shows an example of running thin-edge.io on an Actia TGUR device
 
 This device uses a custom OS (built with Yocto) and it does not have any conventional package managers available, so the installation follows the "app" convention of installing it under `/media/apps/<name>/` folder, and the entrypoint to the application is under `/media/apps/<name>/bin/containedapp`.
 
+## Installing
+
+Use the following one-liner to install thin-edge.io on the device:
+
+```sh
+wget -O https://raw.githubusercontent.com/thin-edge/tedge-actia-tgur/main/scripts/install.sh | sh -s
+```
+
+Once the script has finished, you should restart the device to confirm that thin-edge.io is launched automatically on device startup.
+
+If you don't want/can't restart the device, then you can manually start the required services by running the following command:
+
+```sh
+/media/apps/com.thin-edge.app/bin/containedapp
+```
+
 ## Initializing a shell
 
 Due to thin-edge.io being installed in a non-standard location, the PATH variable needs to be set before you can . In addition the custom configuration location is also controlled by the `TEDGE_CONFIG_DIR` environment variable.
