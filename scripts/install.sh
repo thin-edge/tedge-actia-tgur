@@ -7,6 +7,10 @@ set -e
 # Cumulocity IoT settings
 C8Y_URL=
 
+if [ $# -gt 0 ]; then
+    C8Y_URL="$1"
+fi
+
 # Installation settings
 CHANNEL=main
 VERSION="1.2.1-rc192+g1fcd3b3"
@@ -127,16 +131,9 @@ fi
 systemctl daemon-reload
 
 #
-# Cumulocity IoT
+# Actia launcher / entrypoint script which is
+# run on device startup
 #
-if ! tedge config get c8y.url >/dev/null 2>&1; then
-    if [ -n "$C8Y_URL" ]; then
-        tedge config set c8y.url "$C8Y_URL"
-        tedge cert upload c8y
-        tedge connect c8y
-    fi
-fi
-
 if [ ! -f "$BIN_DIR/containedapp" ]; then
     cat << EOT > "$BIN_DIR/containedapp"
 #!/bin/sh
@@ -147,4 +144,26 @@ systemctl start tedge-mapper-c8y
 systemctl start mosquitto
 EOT
     chmod +x "$BIN_DIR/containedapp"
+fi
+
+#
+# Cumulocity IoT
+#
+if ! tedge config get c8y.url >/dev/null 2>&1; then
+    # Prompt user for missing info
+    if [ -z "$C8Y_URL" ]; then
+        printf "Enter the c8y.url: "
+        read -r C8Y_URL
+    fi
+
+    # URL normalization
+    C8Y_URL=$(echo "$C8Y_URL" | sed 's|.*://||g')
+
+    if [ -n "$C8Y_URL" ]; then
+        tedge config set c8y.url "$C8Y_URL"
+        tedge cert upload c8y
+        tedge connect c8y
+    else
+        echo "Note: You haven't provided a c8y.url, so you will need to configure thin-edge.io yourself" >&2
+    fi
 fi
