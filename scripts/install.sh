@@ -48,8 +48,12 @@ case "$ARCH" in
     arm64|aarch64) TARGET_ARCH="arm64" ;;
 esac
 
-wget -O "$BIN_DIR/tedge.tar.gz" "https://dl.cloudsmith.io/public/thinedge/tedge-$CHANNEL/raw/names/tedge-${TARGET_ARCH}/versions/$VERSION/tedge.tar.gz"
-(cd "$BIN_DIR" && tar xzvf tedge.tar.gz && rm -f "$BIN_DIR/tedge.tar.gz")
+if ! command -V tedge >/dev/null 2>&1; then
+    wget -O "$BIN_DIR/tedge.tar.gz" "https://dl.cloudsmith.io/public/thinedge/tedge-$CHANNEL/raw/names/tedge-${TARGET_ARCH}/versions/$VERSION/tedge.tar.gz"
+    (cd "$BIN_DIR" && tar xzvf tedge.tar.gz && rm -f "$BIN_DIR/tedge.tar.gz")
+else
+    echo "tedge is already installed" >&2
+fi
 
 #
 # Init
