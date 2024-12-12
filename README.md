@@ -36,3 +36,19 @@ Afterwards you can access the thin-edge.io commands as normal:
 tedge config list
 tedge mqtt sub '#'
 ```
+
+### Changing the default MQTT Broker port used by mosquitto
+
+You can change the MQTT port (`1883`) used by mosquitto and the thin-edge.io components by changing the thin-edge.io configuration file.
+
+For example, if you want to change the port from the default MQTT port `1883` to port `1884`, then run the following commands
+
+```sh
+. /media/apps/com.thin-edge.app/activate
+
+tedge config set mqtt.bind.port 1884
+tedge config set mqtt.client.port 1884
+
+tedge reconnect c8y
+systemctl restart tedge-agent
+```
