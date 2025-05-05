@@ -13,7 +13,7 @@ fi
 
 # Installation settings
 CHANNEL=release
-VERSION="1.4.2"
+VERSION="1.5.0"
 
 IDENTITY_PREFIX=${IDENTITY_PREFIX:-actia_}
 IDENTITY_SCRIPT=/media/maps/regatta/bin/sn.sh
