@@ -32,8 +32,8 @@ update() {
 
     # Commit change
     echo "Committing to main"
-    echo git commit -am "Update version to $LATEST_VERSION"
-    echo git push --set-upstream origin main
+    git commit -am "Update version to $LATEST_VERSION"
+    git push --set-upstream origin main
 }
 
 COMMAND="$1"
