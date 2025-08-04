@@ -32,7 +32,7 @@ update() {
 
     # Commit change
     echo "Committing to main"
-    git commit -am "Update version to $LATEST_VERSION"
+    git commit -am "Update version to $TEDGE_VERSION"
     git push --set-upstream origin main
 }
 
