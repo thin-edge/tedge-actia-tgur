@@ -118,6 +118,13 @@ if [ ! -f /etc/systemd/system/tedge-mapper-c8y.service ]; then
     wget -O - https://raw.githubusercontent.com/thin-edge/tedge-actia-tgur/main/etc/systemd/system/tedge-mapper-c8y.service > /etc/systemd/system/tedge-mapper-c8y.service
 fi
 
+if [ ! -f /etc/systemd/system/tedge-cert-renewer.target ]; then
+    echo "Downloading service definition: tedge-cert-renewer units" >&2
+    wget -O - https://raw.githubusercontent.com/thin-edge/tedge-actia-tgur/main/etc/systemd/system/tedge-cert-renewer@.service > /etc/systemd/system/tedge-cert-renewer@.service
+    wget -O - https://raw.githubusercontent.com/thin-edge/tedge-actia-tgur/main/etc/systemd/system/tedge-cert-renewer@.timer > /etc/systemd/system/tedge-cert-renewer@.timer
+    wget -O - https://raw.githubusercontent.com/thin-edge/tedge-actia-tgur/main/etc/systemd/system/tedge-cert-renewer.target > /etc/systemd/system/tedge-cert-renewer.target
+fi
+
 # reload service definitions
 systemctl daemon-reload
 
