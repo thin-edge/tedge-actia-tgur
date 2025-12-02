@@ -3,3 +3,9 @@ path = "/media/apps/com.thin-edge.app/log"
 
 [data]
 path = "/media/apps/com.thin-edge.app/data"
+
+[log]
+plugin_paths = ["/media/apps/com.thin-edge.app/log-plugins", "/usr/share/tedge/log-plugins"]
+
+[diag]
+plugin_paths = ["/media/apps/com.thin-edge.app/diag-plugins", "/usr/share/tedge/diag-plugins"]
